@@ -1,5 +1,3 @@
-"use client"
-
 import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Scatter, ScatterChart, ResponsiveContainer } from 'recharts';
 
@@ -14,14 +12,9 @@ const RegressionCalculator = () => {
   const [xValue, setXValue] = useState('');
   const [predictedY, setPredictedY] = useState(null);
 
-  const updatePoint = (index: number, field: string, value:string) => {
+  const updatePoint = (index: number, field: 'x' | 'y', value: string) => {
     const newPoints = [...originalPoints];
-    if (field == 'x') {
-      newPoints[index]['x'] = parseFloat(value) || 0;
-    } else if (field == 'y') {
-      newPoints[index]['y'] = parseFloat(value) || 0;
-    }
-    
+    newPoints[index][field] = parseFloat(value) || 0;
     setOriginalPoints(newPoints);
   };
 
@@ -57,7 +50,7 @@ const RegressionCalculator = () => {
       [sumX3, sumX2, sumX],
       [sumX2, sumX, n]
     ];
-   
+    
     const results = [sumX2Y, sumXY, sumY];
 
     // Gaussian elimination
@@ -126,13 +119,13 @@ const RegressionCalculator = () => {
     const yMean = originalPoints.reduce((sum, p) => sum + p.y, 0) / originalPoints.length;
     let ssRes = 0;
     let ssTot = 0;
-   
+    
     originalPoints.forEach(point => {
       const predicted = a * point.x * point.x + b * point.x + c;
       ssRes += (point.y - predicted) ** 2;
       ssTot += (point.y - yMean) ** 2;
     });
-   
+    
     return (1 - ssRes / ssTot);
   };
 
@@ -144,7 +137,7 @@ const RegressionCalculator = () => {
       <p className="text-gray-700 mb-6">
         Enter points with the X value being the horizontal distance from the target and the Y value being the speed you need to run your motor at to reach the target. Please enter four points. Optimised for FIRST Tech Challenge, Decode season 2025-26.
       </p>
-     
+      
       <div className="bg-gray-50 border border-gray-300 rounded p-4 mb-6">
         <div className="flex justify-between items-center mb-3">
           <h3 className="font-semibold">Your Data Points:</h3>
@@ -185,7 +178,7 @@ const RegressionCalculator = () => {
           ))}
         </div>
       </div>
-     
+      
       <div className="bg-pink-50 border border-pink-300 rounded p-4 mb-6">
         <h2 className="font-semibold text-lg mb-2">Best-Fit Quadratic Equation:</h2>
         <p className="text-xl font-mono mb-2">
@@ -250,7 +243,7 @@ const RegressionCalculator = () => {
       </div>
 
       <div className="mt-8 pt-4 border-t border-gray-300 text-center text-sm text-gray-600">
-        <p>Made by FTC Team 11505 The Flaming Galahs</p>
+        <p>Created and shared by FTC Team 11505 The Flaming Galahs | Get in touch with us by email at S.Canfield@stpeters.qld.edu.au</p>
       </div>
     </div>
   );
