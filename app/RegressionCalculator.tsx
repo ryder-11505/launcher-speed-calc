@@ -134,14 +134,14 @@ const RegressionCalculator = () => {
   const r2 = calculateR2();
 
   return (
-    <div className="bg-gray-200 min-h-screen">
+    <div className="bg-gray-300 min-h-screen">
       <div className="p-6 max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-2">Shooter Speed Calculator for Robotics</h1>
         <p className="text-gray-700 mb-6">
           Enter points with the X value being the horizontal distance from the target and the Y value being the speed you need to run your motor at to reach the target. Please enter four points. Optimised for FIRST Tech Challenge, Decode season 2025-26.
         </p>
       
-        <div className="bg-gray-50 border border-gray-300 rounded p-4 mb-6">
+        <div className="bg-gray-100 border border-gray-400 rounded p-4 mb-6">
           <div className="flex justify-between items-center mb-3">
             <h3 className="font-semibold">Your Data Points:</h3>
             <button
@@ -190,7 +190,7 @@ const RegressionCalculator = () => {
           <p className="text-sm text-gray-600">R² = {r2.toFixed(4)} (goodness of fit)</p>
         </div>
 
-        <div className="mb-6">
+        <div className="bg-gray-100 border border-gray-400 rounded p-4 mb-6">
           <h3 className="font-semibold mb-2">Verification with your original points:</h3>
           <div className="grid grid-cols-2 gap-2 text-sm">
             {originalPoints.map(point => {
@@ -207,7 +207,7 @@ const RegressionCalculator = () => {
           </div>
         </div>
 
-        <div className="mb-6">
+        <div className="bg-gray-100 border border-gray-400 rounded p-4 mb-6">
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" />
