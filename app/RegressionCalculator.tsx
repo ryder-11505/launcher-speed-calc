@@ -93,7 +93,7 @@ const RegressionCalculator = () => {
 
   // Generate points for the curve
   const curvePoints = [];
-  for (let x = 70; x <= 160; x += 5) {
+  for (let x = -160; x <= 160; x += 5) {
     const y = a * x * x + b * x + c;
     curvePoints.push({ x, y, predictedY: y });
   }
